@@ -1,0 +1,1 @@
+Dans RCSwitch.h il faut forcer le mode Attiny et le #define RCSwitchDisableReceiving sinon le code est trop gros pour l'attiny
