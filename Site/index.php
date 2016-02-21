@@ -43,8 +43,8 @@ echo "<p>" . $date . " - " . $val . "</p>";
       </li>
    </ul>
    <ul class="pageitem">
-      <form method="get" action="http://avot.no-ip.org:8000/">
-      <!form method="get" action="http://192.168.1.101:8000/">
+      <form method="get" action="http://82.228.145.219:8000/">
+      <!form method="get" action="http://192.168.0.195:8000/">
       <li class="checkbox"><span class="name">Faire un relevé</span><input name="rel" type="checkbox" onclick="this.form.submit();" /> </li>
       <li class="checkbox"><span class="name">Arroser</span><input name="arr" type="checkbox" onclick="this.form.submit();"/> </li>
       </form>
