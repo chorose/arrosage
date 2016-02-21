@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link href="css/developer-style.css" rel="stylesheet" media="screen" type="text/css" />
+<script type="text/javascript" src="javascript/function.js"></script>
+</head>
+<body>
+
+<div id="topbar">
+   <div id="title">R&eacute;glages</div>
+   <div id="leftnav">
+      <a href="index.php" >
+      <img alt="home" src="images/home.png" />
+      </a>
+   </div>
+</div>
+
+<div id="content">
+   <ul class="pageitem">
+      <li class="smallfield">
+      <form method="get" action="http://avot.no-ip.org:8000/">
+      <!form method="get" action="http://192.168.1.101:8000/">
+      <span class="name">Seuil d'humidit&eacute;</span><input name="hum" placeholder="entrer la valeur" type="text"/>
+      </li>
+      <li class="select">
+      <select name="int">
+			<option selected disabled>Intervalle de mesure</option>
+			<option value="1">1 heure</option>
+			<option value="2">2 heures</option>
+			<option value="6">6 heures</option>
+			<option value="12">12 heures</option>
+      </select>
+      <span class="arrow"></span> 
+      </li>
+      <li class="select">
+      <select name="tps">
+			<option selected disabled>Temps d'arrosage</option>
+			<option value="1">1 minute</option>
+			<option value="2">2 minutes</option>
+			<option value="3">3 minutes</option>
+      </select>
+      <span class="arrow"></span> 
+      </li>
+      <li class="button">
+      <input name="sav" type="submit" value="Enregistrer" />
+      </form>
+      </li>
+   </ul>
+</div>
+
+</body>
+
+</html>
