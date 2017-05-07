@@ -9,7 +9,7 @@ int analogInPin = A1;
 // pin digital transmitter 0
 int transmitterPin = 0;
 int watchdog_counter = 0;
-int seuil = 300;
+int seuil = 500;
 
 void setup_watchdog(int ii)
 {
@@ -47,10 +47,15 @@ void setup() {
 //}
 
 void arroser(int sensorValue) {
+  int nb = 0;
   if (sensorValue < seuil) {
-    mySwitch.switchOn("10001", 1);
-    delay(10000); // 1 min
-    mySwitch.switchOff("10001", 1);
+    nb = 5 - (sensorValue / 100);
+    for(short i=0;i< nb;i++){
+      mySwitch.switchOn("10001", 1);
+      delay(10000); // 1 min
+      mySwitch.switchOff("10001", 1);
+      delay(10000); // 1 min
+    }
   }
 }
 
