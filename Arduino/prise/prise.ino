@@ -1,6 +1,7 @@
 #define __AVR_ATtinyX5__
 #include <RCSwitch.h>
 #include <avr/sleep.h>
+#include <avr/wdt.h>
 
 RCSwitch mySwitch = RCSwitch();
 
@@ -11,8 +12,7 @@ int transmitterPin = 0;
 int watchdog_counter = 0;
 int seuil = 500;
 
-void setup_watchdog(int ii)
-{
+void setup_watchdog(int ii){
   // 0=16ms, 1=32ms,2=64ms,3=128ms,4=250ms,5=500ms
   // 6=1 sec,7=2 sec, 8=4 sec, 9= 8sec
 
@@ -24,10 +24,10 @@ void setup_watchdog(int ii)
 
   MCUSR &= ~(1 << WDRF);
   // start timed sequence
-  WDTCSR |= (1 << WDCE) | (1 << WDE);
+  WDTCR |= (1 << WDCE) | (1 << WDE);
   // set new watchdog timeout value
-  WDTCSR = bb;
-  WDTCSR |= _BV(WDIE);
+  WDTCR = bb;
+  WDTCR |= _BV(WDIE);
 }
 
 void setup() {
@@ -38,7 +38,7 @@ void setup() {
   //setup_watchdog(9); //Setup watchdog to go off after 8 sec
   //set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   //ADCSRA &= ~(1 << ADEN); //Disable ADC, saves ~230uA
-  Serial.begin(9600);
+  //Serial.begin(9600);
 }
 
 //This runs each time the watch dog wakes us up from sleep
@@ -48,13 +48,14 @@ void setup() {
 
 void arroser(int sensorValue) {
   int nb = 0;
+  mySwitch.send(sensorValue, 16);
   if (sensorValue < seuil) {
     nb = 5 - (sensorValue / 100);
     for(short i=0;i< nb;i++){
       mySwitch.switchOn("10001", 1);
-      delay(10000); // 1 min
+      delay(60000); // 1 min
       mySwitch.switchOff("10001", 1);
-      delay(10000); // 1 min
+      delay(60000); // 1 min
     }
   }
 }
@@ -66,7 +67,7 @@ void loop() {
   //watchdog_counter = 0;
   //ADCSRA |= (1 << ADEN); //Enable ADC
   int sensorValue = analogRead(analogInPin);
-  Serial.println(sensorValue);
+  //Serial.println(sensorValue);
   arroser(sensorValue);
   //ADCSRA &= ~(1 << ADEN); //Disable ADC, saves ~230uA
   //}
