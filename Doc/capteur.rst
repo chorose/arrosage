@@ -120,9 +120,10 @@ pourra ainsi y faire tourner un serveur http et la programmer en Python.
 2. Montage
 ----------------
 
-La sonde d'humidité est branchée sur les ports VCC (8), GND (4) et A1 (7) de
+La sonde d'humidité est branchée sur les ports VCC (pin 8), GND
+(pin 4) et A1 (pin 7) de
 l'Attiny. L'émetteur RF est branché sur les ports VCC, GND et 0
-(5). Le tout est alimenté par 3 piles rechargeables et présenté par le schéma suivant:
+(pin 5). Le tout est alimenté par 3 piles rechargeables et présenté par le schéma suivant:
 
 .. image:: Schémas/capteur2.png
   :align: center
@@ -170,10 +171,24 @@ https://github.com/chorose/arrosage/blob/V0/BeagleBone/receive.cpp
 C'est sensiblement le même que pour le leonardo du premier montage,
 sauf qu'on utilise la bibliothèque RCSwitch adaptée pour la BBB https://bitbucket.org/hackspark/rcswitch-bbb
 
-On lance ``receive`` pour activer la réception
+On lance ``receive`` pour activer la réception.
 
-4. A faire
+Troisième montage
+===================
+
+Ce troisième montage est sensiblement le même que le précedent sauf
+qu'on alimente les composants via le port 4 (pin 3) de l'Attiny plutôt
+que VCC. Cela permettra de les allumer uniquement lorsqu'on prendra
+les mesures afin de limiter la consommation. Il utilise donc les mêmes
+composants selon le schéma suivant:
+
+.. image:: Schémas/capteur3.png
+  :align: center
+
+Au niveau code (tag V1), il suffit d'allumer ``digitalWrite(4,HIGH)`` avant
+d'appeler la fonction ``arroser()`` et d'éteindre ensuite ``digitalWrite(4,LOW)``.
+
+A faire
 ------------
-1. Alimenter les composants via un port de l'Attiny
-2. Utiliser le Watch Dog de l'Attiny pour limiter la conso
-3. Mettre un interrupteur
+1. Utiliser le Watch Dog de l'Attiny pour limiter la conso
+2. Mettre un interrupteur
