@@ -35,7 +35,7 @@ Le récepteur RF se connecte aux ports VCC,GND et sur le port
 d'interruption 0 (pin 3) du leonardo pour les données (port ``data``
 du récepteur).
 
-.. image:: Schémas/montage1.png
+.. image:: Schémas/montage1.svg
   :align: center
 
 3. Programmes
@@ -125,13 +125,13 @@ La sonde d'humidité est branchée sur les ports VCC (pin 8), GND
 l'Attiny. L'émetteur RF est branché sur les ports VCC, GND et 0
 (pin 5). Le tout est alimenté par 3 piles rechargeables et présenté par le schéma suivant:
 
-.. image:: Schémas/capteur2.png
+.. image:: Schémas/capteur2.svg
   :align: center
 
 Le récepteur se branche sur les prots VCC, GND et GPIO1 (PIN 30) de la BBB comme
 montré par le schéma suivant:
 
-.. image:: Schémas/recepteur2.png
+.. image:: Schémas/recepteur2.svg
   :align: center
 
 3. Programmes
@@ -182,7 +182,7 @@ que VCC. Cela permettra de les allumer uniquement lorsqu'on prendra
 les mesures afin de limiter la consommation. Il utilise donc les mêmes
 composants selon le schéma suivant:
 
-.. image:: Schémas/capteur3.png
+.. image:: Schémas/capteur3.svg
   :align: center
 
 Au niveau code (tag V1), il suffit d'allumer ``digitalWrite(4,HIGH)`` avant
