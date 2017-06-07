@@ -5,23 +5,14 @@
 
 RCSwitch mySwitch = RCSwitch();
 
-#define DEBUG
+//#define DEBUG
 
 // pin analog moisture sensor A1
 int analogInPin = A1;
 // pin digital transmitter 0
 int transmitterPin = 0;
 // Alimentation des composants
-int alimPin = 4;
-
-#ifdef DEBUG 
-int debug = 3;
-#define DEBUG_ON digitalWrite(debug,HIGH);
-#define DEBUG_OFF digitalWrite(debug,LOW);
-#else
-#define DEBUG_ON
-#define DEBUG_OFF
-#endif
+int alimPin = 3;
 
 int watchdog_counter = 0;
 int seuil = 800;
@@ -48,9 +39,6 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(analogInPin, INPUT);
   pinMode(alimPin, OUTPUT);
-  #ifdef DEBUG
-  pinMode(debug, OUTPUT);
-  #endif
   pinMode(transmitterPin, OUTPUT);
   mySwitch.enableTransmit(transmitterPin);
   //setup_watchdog(9); //Setup watchdog to go off after 8 sec
@@ -70,15 +58,12 @@ void arroser(int sensorValue) {
   if (sensorValue < seuil) {
     nb = (seuil - sensorValue) / 100;
     for(short i=0;i< nb;i++){
-      DEBUG_ON
       mySwitch.switchOn("10001", 1);
       delay(60000); // 1 min
-      DEBUG_OFF
       mySwitch.switchOff("10001", 1);
       delay(60000); // 1 min
     }
   }
-  DEBUG_OFF
 }
 
 void allumer(){

@@ -192,3 +192,4 @@ A faire
 ------------
 1. Utiliser le Watch Dog de l'Attiny pour limiter la conso
 2. Mettre un interrupteur
+3. Trouver un moyen de mettre à jour le seuil sans reprogrammer l'attiny 
